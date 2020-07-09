@@ -1,0 +1,22 @@
+.chat-main
+  .main-header
+    .main-header__left-box
+      .main-header__left-box__current-group test
+      .main-header__left-box__member-list Member :
+    = link_to "#" do
+      .main-header__edit-btn Edit
+  .messages
+    .message
+      .message__upper-info
+        .message__upper-info__talker a
+        .message__upper-info__date 2020/07/04(Sat) 14:46:00
+      .message__text あいうえお
+  .form
+    %form.new_message
+      .input-box
+        %input{placeholder: "type a message" , class: "input-box__text" , type: "text"}    
+        %label{class: "input-box__image" }   
+          = icon('fas' , 'image') 
+          -# ::before
+          %input{class: "input-box__image__file" , type: "file"}
+      %input{type: "submit" , class:"submit-btn"}    
