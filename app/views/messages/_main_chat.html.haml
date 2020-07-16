@@ -6,17 +6,26 @@
     = link_to "#" do
       .main-header__edit-btn Edit
   .messages
-    .message
-      .message__upper-info
-        .message__upper-info__talker a
-        .message__upper-info__date 2020/07/04(Sat) 14:46:00
-      .message__text あいうえお
+    -# = render @messages
+
+      -# .message
+      -#   .message__upper-info
+      -#   .message__upper-info__talker
+      -#     = message.user.name
+      -#   .message__upper-info__date
+      -#     = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+      -# .message__text
+      -#   - if message.content.present?
+      -#     %p.lower-message__content
+      -#       = message.content
+      -#       = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
+     
   .form
-    %form.new_message
+    = form_for [@group, @message] do |f|
       .input-box
-        %input{placeholder: "type a message" , class: "input-box__text" , type: "text"}    
-        %label{class: "input-box__image" }   
+        = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+        = f.label :image, class: 'input-box__image' do
           = icon('fas' , 'image') 
-          -# ::before
-          %input{class: "input-box__image__file" , type: "file"}
-      %input{type: "submit" , class:"submit-btn"}    
+          = f.file_field :image, class: 'input-box__image__file'
+      = f.submit 'Send', class: 'submit-btn'
+
